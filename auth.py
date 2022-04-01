@@ -68,11 +68,7 @@ class Main(tk.Tk):
     def twilio(self):
         global cipher
         client = Client(self.sid, self.token)
-        message = client.messages.create(
-            body=f'Doğrulama kodun {self.r}',
-            from_='twilio_number', 
-            to='+your_phone_number' 
-            )
+        message = client.messages.create(body=f'Authentication Code: {self.r}',from_='twilio_number', to='+your_phone_number' )
         for i in message.fetch().body.split(" - ")[1]: 
             if i.isdigit():
                 cipher += i
